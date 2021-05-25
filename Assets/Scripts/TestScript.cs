@@ -19,6 +19,7 @@ public class TestScript : MonoBehaviour
     {
         Vector3 pos = transform.position;
         pos.x += speed * Time.deltaTime;
-        transform.position = pos;       
+        transform.position = pos;  
+        //aula 10     
     }
 }
