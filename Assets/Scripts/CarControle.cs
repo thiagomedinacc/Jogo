@@ -68,12 +68,8 @@ public class CarControle : MonoBehaviour
        
         if (rb.velocity.magnitude >= 0.3f){
             rb.angularVelocity = Input.GetAxis("Horizontal") * handling;
-        }
-        
-
-        
+        } 
     }
-
 
 
     // Funcoes para ajudar no drift
@@ -84,23 +80,12 @@ public class CarControle : MonoBehaviour
         return transform.right * Vector2.Dot(rb.velocity,transform.right);
     }
 
-
-   // void OnCollisionEnter2D(Collision2D colisor) {
-        //if (colisor.gameObject.tag == "Nitro") {
-          //  Debug.Log("carro encostou");
-           // Destroy(nitro);
-        //}
-    //}
-
     void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (col.gameObject.tag == "Nitro") {
             qtdNitro +=1;
         }
-        
-        
-
     }
 
 }
