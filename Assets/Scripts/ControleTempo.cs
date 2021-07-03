@@ -25,7 +25,14 @@ public class ControleTempo : MonoBehaviour
         tempoVolta = 0f;
         verificaRes = false;
         tempoAux = 0f;
-        tempoAlvo = 18f;       
+        if (SceneManager.GetActiveScene().name == "Fase 1"){
+            tempoAlvo = 18f;  
+        }
+        else if (SceneManager.GetActiveScene().name == "Fase 2" ){
+            tempoAlvo = 30f;
+        }
+        else tempoAlvo = 35f;
+             
     }
 
     // Update is called once per frame

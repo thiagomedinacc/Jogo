@@ -10,13 +10,13 @@ Coisas que pretendo incluir na versão final do jogo.
 
 -- Gerenciar upgrades e como os mesmos irão funcionar.
 
--- Gerenciar tempo dos time trials.
-
 -- Gerenciar progresso do jogo (compra de upgrades / outros carros ) <<-- ainda nao sei
 
 -- Incluir obstaculos nas fases, para desviar/danificar.
 
 -- Incluir vida do carro (barra de dano tomado).
+
+-- Incluir radar? Testar
 
 
 
