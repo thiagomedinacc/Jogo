@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarControle : MonoBehaviour
 {
 
+    public AudioSource audio;
     private int qtdNitro = 1;
     public float potencia = 12f;
     public float handling = -100f;
@@ -28,6 +29,8 @@ public class CarControle : MonoBehaviour
         velMax = potencia/10;
     }
 
+   
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -45,6 +48,7 @@ public class CarControle : MonoBehaviour
         
 
         if (Input.GetButton("Acelera")){
+           // audio.Play();
             inercia = false;
             rb.drag = 1;
             if (velocidade < velMax){
@@ -86,6 +90,7 @@ public class CarControle : MonoBehaviour
         if (col.gameObject.tag == "Nitro") {
             qtdNitro +=1;
         }
+        else audio.Play();
     }
 
 }
