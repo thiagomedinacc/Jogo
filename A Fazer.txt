@@ -4,15 +4,12 @@ Coisas que pretendo incluir na versão final do jogo.
 
 -- Botar sons/audios no jogo.
 
--- Botar nitros e gerenciar como eles irão funcionar.
-
 -- Botar efeitos ao fazer curvas em alta velocidade (marca de pneu) e ao usar nitro.
 
 -- Gerenciar upgrades e como os mesmos irão funcionar.
 
 -- Gerenciar progresso do jogo (compra de upgrades / outros carros ) <<-- ainda nao sei
 
--- Incluir obstaculos nas fases, para desviar/danificar.
 
 -- Incluir vida do carro (barra de dano tomado).
 

@@ -41,7 +41,7 @@ public class ControleTempo : MonoBehaviour
 
         if (inicioVolta == false) {       
             tempoVolta = Time.time ;
-            print("Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta));
+            //print("Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta));
         }
 
         if (verificaRes == true ) {
@@ -77,6 +77,19 @@ public class ControleTempo : MonoBehaviour
         else if (col.gameObject.tag == "Carro" & inicioVolta == false & tempoAux > 5f) {
             verificaRes = true;         
         }
+    }
+
+
+     void OnCollisionEnter2D(Collision2D collision) //Detecta colisao nos muros
+    {
+
+
+        //Check for a match with the specific tag on any GameObject that collides with your GameObject
+        //if (collision.gameObject.tag == "col")
+        //{
+            //If the GameObject has the same tag as specified, output this message in the console
+            print("xxzsxzxzxz");
+        //}
     }
 
     void OnGUI()
