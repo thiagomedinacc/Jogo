@@ -19,24 +19,58 @@ public class ControleTempo : MonoBehaviour
 
     public Text tempoV;
     public Text tempoA;
+    public Text scoreT;
+
+    public Text bonus;
+    public int score;
     
+    //private Vector3 posInicial;
+
+    public GameObject fases;
+   
+    private int faseAtual;
+
+    bool upgrade1;
+    bool upgrade2;
+    bool upgrade3;
+
+    int qtdUpgrades;
+
+    //public Transform car;
+
+   
 
     
     // Start is called before the first frame update
     void Start()
     {
-         tempoA.text = "Tempo Alvo: 15s";
+        upgrade1 = false; 
+        upgrade2 = false; 
+        upgrade3 = false;
+        qtdUpgrades = 0;
+       // posInicial =  new Vector3 (car.transform.position.x, car.transform.position.y, car.transform.position.z);//
+
+        scoreT.text = "Score:" + score.ToString() + "g/10";
+        score = 0;
         inicioVolta = true; // Se true, então está dando a volta
         tempoVolta = 0f;
         verificaRes = false;
         tempoAux = 0f;
         if (SceneManager.GetActiveScene().name == "Fase 1"){
-            tempoAlvo = 15f;  
+            tempoAlvo = 15f;
+            tempoA.text = "Tempo Alvo: 15s";
+            faseAtual = 1;  
         }
         else if (SceneManager.GetActiveScene().name == "Fase 2" ){
             tempoAlvo = 30f;
+            tempoA.text = "Tempo Alvo: 30s"; 
+            faseAtual = 2;  
         }
-        else tempoAlvo = 35f;
+        else {
+            tempoAlvo = 35f;
+            tempoA.text = "Tempo Alvo: 35s"; 
+            faseAtual = 3;  
+        }
              
     }
 
@@ -57,10 +91,55 @@ public class ControleTempo : MonoBehaviour
             if (tempoFinal < tempoAlvo) {
                 //print ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
                 tempoV.text = ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
+                if (faseAtual == 1) {
+                    fases.GetComponent<TerminaFases>().venceFase1();  
+                }
+                if (faseAtual == 2) {
+                    fases.GetComponent<TerminaFases>().venceFase2();  
+                }
+                else {
+                    fases.GetComponent<TerminaFases>().venceFase3();
+                }
             }
             else {
                 //print ("Tente novamente!! Sua volta foi" + tempoFinal + " segundos");    
                 tempoV.text =("Tente novamente!! Sua volta foi de                   " + tempoFinal + " segundos");
+                score +=10;
+                scoreT.text = "Score:" + score.ToString() + "g/10";
+                if(score == 10 && qtdUpgrades <3) {
+                    score = 0;
+                    scoreT.text = "Score:" + score.ToString() + "g/10";
+                    qtdUpgrades++;
+                    bool ok = false;
+                while (!ok){         
+                        int rand = Random.Range(1, 4);
+                        print(rand);
+                        if (rand == 1 && upgrade1 == false) {
+                            bonus.text = "Motor v8 instalado. Aumento de velocidade máxima";
+                            upgrade1 = true;
+                            ok = true;
+                        }
+                        if (rand == 2  && upgrade2 == false) {
+                            bonus.text = "Turbo instalado. Aumento de aceleração";
+                            upgrade2 = true;
+                            ok = true;
+                        }
+                        if (rand == 3 && upgrade3 == false) {
+                            bonus.text = "Pneus slick instalados. Aumento de handling";
+                            upgrade3 = true;
+                            ok = true;
+                        }
+
+                    }
+                  
+                   // 
+                }
+
+
+               // car.transform.position = posInicial;
+               // car.transform.rotation.z = 90f;
+               // car.
+                //transform.position.x = -86f;
                 }
 
             verificaRes = false;            
@@ -68,8 +147,8 @@ public class ControleTempo : MonoBehaviour
 
         if (Input.GetButton("Retry")){
 
-         Start();
-          SceneManager.LoadScene("Cena2D");
+        // Start();
+          SceneManager.LoadScene("Fases");
         } 
     }
 

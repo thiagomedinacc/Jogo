@@ -5,7 +5,6 @@ using UnityEngine;
 public class CarControle : MonoBehaviour
 {
 
-    public AudioSource audio;
     private int qtdNitro = 1;
     public float potencia = 12f;
     public float handling = -100f;
@@ -86,11 +85,10 @@ public class CarControle : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (col.gameObject.tag == "Nitro") {
             qtdNitro +=1;
         }
-        else audio.Play();
+        
     }
 
 }

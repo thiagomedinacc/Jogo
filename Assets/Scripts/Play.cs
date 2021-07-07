@@ -11,8 +11,9 @@ public class Play : MonoBehaviour
         SceneManager.LoadScene("Fases");
     }
 
+
     public void Exit() {
-         UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
@@ -29,6 +30,10 @@ public class Play : MonoBehaviour
     public void PlayFase3()
     {
         SceneManager.LoadScene("Fase 3");
+    }
+
+    public void VoltaMenu(){
+        SceneManager.LoadScene("Fases");
     }
 
     // Update is called once per frame

@@ -1,21 +1,10 @@
 Coisas que pretendo incluir na versão final do jogo.
 
--- Criar novas pistas que tenham o formato de pistas reais  (com maior qualidade do que a pista exemplo).
-
--- Botar sons/audios no jogo.
-
--- Botar efeitos ao fazer curvas em alta velocidade (marca de pneu) e ao usar nitro.
 
 -- Gerenciar upgrades e como os mesmos irão funcionar.
 
 -- Gerenciar progresso do jogo (compra de upgrades / outros carros ) <<-- ainda nao sei
 
 
--- Incluir vida do carro (barra de dano tomado).
 
--- Incluir radar? Testar
-
-
-
--->> Mais coisas podem ser incluidas conforme sugestões ou conforme novas ideias surgirem. <<--
 
