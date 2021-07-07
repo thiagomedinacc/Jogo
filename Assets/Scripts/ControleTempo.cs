@@ -36,6 +36,8 @@ public class ControleTempo : MonoBehaviour
 
     int qtdUpgrades;
 
+    public GameObject carro;
+
     //public Transform car;
 
    
@@ -50,7 +52,7 @@ public class ControleTempo : MonoBehaviour
         qtdUpgrades = 0;
        // posInicial =  new Vector3 (car.transform.position.x, car.transform.position.y, car.transform.position.z);//
 
-        scoreT.text = "Score:" + score.ToString() + "g/10";
+        scoreT.text = "Upgrades instalados - " + qtdUpgrades + "/3";
         score = 0;
         inicioVolta = true; // Se true, então está dando a volta
         tempoVolta = 0f;
@@ -105,32 +107,38 @@ public class ControleTempo : MonoBehaviour
                 //print ("Tente novamente!! Sua volta foi" + tempoFinal + " segundos");    
                 tempoV.text =("Tente novamente!! Sua volta foi de                   " + tempoFinal + " segundos");
                 score +=10;
-                scoreT.text = "Score:" + score.ToString() + "g/10";
                 if(score == 10 && qtdUpgrades <3) {
                     score = 0;
-                    scoreT.text = "Score:" + score.ToString() + "g/10";
                     qtdUpgrades++;
+                    scoreT.text = "Upgrades instalados - " + qtdUpgrades + "/3";
                     bool ok = false;
-                while (!ok){         
-                        int rand = Random.Range(1, 4);
-                        print(rand);
-                        if (rand == 1 && upgrade1 == false) {
-                            bonus.text = "Motor v8 instalado. Aumento de velocidade máxima";
-                            upgrade1 = true;
-                            ok = true;
-                        }
-                        if (rand == 2  && upgrade2 == false) {
-                            bonus.text = "Turbo instalado. Aumento de aceleração";
-                            upgrade2 = true;
-                            ok = true;
-                        }
-                        if (rand == 3 && upgrade3 == false) {
-                            bonus.text = "Pneus slick instalados. Aumento de handling";
-                            upgrade3 = true;
-                            ok = true;
-                        }
+                    if (qtdUpgrades <= 3) {
+                            while (!ok){         
+                                int rand = Random.Range(1, 4);
+                                print(rand);
+                                if (rand == 1 && upgrade1 == false) {
+                                    bonus.text = "Motor v8 instalado. Aumento de velocidade máxima";
+                                    //fases.GetComponent<TerminaFases>().venceFase2(); 
+                                    carro.GetComponent<CarControle>().potencia *= 1.40f;
+                                    upgrade1 = true;
+                                    ok = true;
+                                }
+                                if (rand == 2  && upgrade2 == false) {
+                                    bonus.text = "Turbo instalado. Aumento de aceleração";
+                                    carro.GetComponent<CarControle>().aceleracao *= 5;
+                                    upgrade2 = true;
+                                    ok = true;
+                                }
+                                if (rand == 3 && upgrade3 == false) {
+                                    bonus.text = "Pneus slick instalados. Aumento de handling";
+                                    carro.GetComponent<CarControle>().handling *= 1.33f;
+                                    upgrade3 = true;
+                                    ok = true;
+                                }
 
+                            }
                     }
+                
                   
                    // 
                 }
