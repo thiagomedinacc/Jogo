@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ControleTempo : MonoBehaviour
 {
@@ -15,18 +16,22 @@ public class ControleTempo : MonoBehaviour
 
     private float tempoAux;
 
+
+    public Text tempoV;
+    public Text tempoA;
     
 
     
     // Start is called before the first frame update
     void Start()
     {
+         tempoA.text = "Tempo Alvo: 15s";
         inicioVolta = true; // Se true, então está dando a volta
         tempoVolta = 0f;
         verificaRes = false;
         tempoAux = 0f;
         if (SceneManager.GetActiveScene().name == "Fase 1"){
-            tempoAlvo = 18f;  
+            tempoAlvo = 15f;  
         }
         else if (SceneManager.GetActiveScene().name == "Fase 2" ){
             tempoAlvo = 30f;
@@ -37,31 +42,32 @@ public class ControleTempo : MonoBehaviour
 
     // Update is called once per frame
     void Update()    {
+       
+        
          tempoAux = Time.time;
 
         if (inicioVolta == false) {       
             tempoVolta = Time.time ;
-            //print("Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta));
+            tempoV.text = "Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta);
         }
 
         if (verificaRes == true ) {
             inicioVolta = true;
             float tempoFinal = tempoVolta - tempoInicioVolta;
             if (tempoFinal < tempoAlvo) {
-                print ("Parabens!! Sua volta foi" + tempoFinal + " segundos");
+                //print ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
+                tempoV.text = ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
             }
             else {
-                print ("Tente novamente!! Sua volta foi" + tempoFinal + " segundos");      }
+                //print ("Tente novamente!! Sua volta foi" + tempoFinal + " segundos");    
+                tempoV.text =("Tente novamente!! Sua volta foi de                   " + tempoFinal + " segundos");
+                }
 
             verificaRes = false;            
         }
 
         if (Input.GetButton("Retry")){
-            
-           // inicioVolta = true;
-          // tempoVolta = 0f;
-            //verificaRes = false;
-         // tempoAux = 0f;
+
          Start();
           SceneManager.LoadScene("Cena2D");
         } 
@@ -78,23 +84,5 @@ public class ControleTempo : MonoBehaviour
             verificaRes = true;         
         }
     }
-
-
-     void OnCollisionEnter2D(Collision2D collision) //Detecta colisao nos muros
-    {
-
-
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        //if (collision.gameObject.tag == "col")
-        //{
-            //If the GameObject has the same tag as specified, output this message in the console
-            print("xxzsxzxzxz");
-        //}
-    }
-
-    void OnGUI()
-        {
-            GUI.Label(new Rect(40, 40, 300, 90), "Tempo alvo dessa pista: " + tempoAlvo + " segundos"); // 2 casas decimais
-        }
 
     }
