@@ -84,7 +84,7 @@ public class ControleTempo : MonoBehaviour
 
         if (inicioVolta == false) {       
             tempoVolta = Time.time ;
-            tempoV.text = "Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta);
+            tempoV.text = "Tempo atual de volta: "+ (tempoVolta - tempoInicioVolta).ToString("F3");
         }
 
         if (verificaRes == true ) {
@@ -92,7 +92,7 @@ public class ControleTempo : MonoBehaviour
             float tempoFinal = tempoVolta - tempoInicioVolta;
             if (tempoFinal < tempoAlvo) {
                 //print ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
-                tempoV.text = ("Parabens!! Sua volta foi de" + tempoFinal + " segundos");
+                tempoV.text = ("Parabens!! Sua volta foi de" + tempoFinal.ToString("F3") + " segundos");
                 if (faseAtual == 1) {
                     fases.GetComponent<TerminaFases>().venceFase1();  
                 }
@@ -105,11 +105,12 @@ public class ControleTempo : MonoBehaviour
             }
             else {
                 //print ("Tente novamente!! Sua volta foi" + tempoFinal + " segundos");    
-                tempoV.text =("Tente novamente!! Sua volta foi de                   " + tempoFinal + " segundos");
+                tempoV.text =("Tente novamente!! Sua volta foi de                   " + tempoFinal.ToString("F2") + " segundos");
                 score +=10;
                 if(score == 10 && qtdUpgrades <3) {
                     score = 0;
                     qtdUpgrades++;
+                    StartCoroutine(waiter());
                     scoreT.text = "Upgrades instalados - " + qtdUpgrades + "/3";
                     bool ok = false;
                     if (qtdUpgrades <= 3) {
@@ -170,6 +171,14 @@ public class ControleTempo : MonoBehaviour
         else if (col.gameObject.tag == "Carro" & inicioVolta == false & tempoAux > 5f) {
             verificaRes = true;         
         }
+    }
+
+    IEnumerator waiter() {
+        
+    
+    //Wait for 4 seconds
+    yield return new WaitForSeconds(6);
+    bonus.text = "";
     }
 
     }
