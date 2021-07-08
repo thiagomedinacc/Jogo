@@ -38,9 +38,13 @@ public class ControleTempo : MonoBehaviour
 
     public GameObject carro;
 
+    
+
     //public Transform car;
 
-   
+   public Image imgbonusP;
+   public Image imgbonusT;
+   public Image imgbonusV;
 
     
     // Start is called before the first frame update
@@ -50,6 +54,9 @@ public class ControleTempo : MonoBehaviour
         upgrade2 = false; 
         upgrade3 = false;
         qtdUpgrades = 0;
+        imgbonusP.enabled = false;
+        imgbonusT.enabled = false;
+        imgbonusV.enabled = false;
        // posInicial =  new Vector3 (car.transform.position.x, car.transform.position.y, car.transform.position.z);//
 
         scoreT.text = "Upgrades instalados - " + qtdUpgrades + "/3";
@@ -119,6 +126,7 @@ public class ControleTempo : MonoBehaviour
                                 print(rand);
                                 if (rand == 1 && upgrade1 == false) {
                                     bonus.text = "Motor v8 instalado. Aumento de velocidade máxima";
+                                    imgbonusV.enabled = true;
                                     //fases.GetComponent<TerminaFases>().venceFase2(); 
                                     carro.GetComponent<CarControle>().potencia *= 1.40f;
                                     upgrade1 = true;
@@ -126,12 +134,14 @@ public class ControleTempo : MonoBehaviour
                                 }
                                 if (rand == 2  && upgrade2 == false) {
                                     bonus.text = "Turbo instalado. Aumento de aceleração";
+                                    imgbonusT.enabled = true;
                                     carro.GetComponent<CarControle>().aceleracao *= 5;
                                     upgrade2 = true;
                                     ok = true;
                                 }
                                 if (rand == 3 && upgrade3 == false) {
                                     bonus.text = "Pneus slick instalados. Aumento de handling";
+                                    imgbonusP.enabled = true;
                                     carro.GetComponent<CarControle>().handling *= 1.33f;
                                     upgrade3 = true;
                                     ok = true;
@@ -179,6 +189,10 @@ public class ControleTempo : MonoBehaviour
     //Wait for 4 seconds
     yield return new WaitForSeconds(6);
     bonus.text = "";
+        imgbonusP.enabled = false;
+        imgbonusT.enabled = false;
+        imgbonusV.enabled = false;
+
     }
 
     }

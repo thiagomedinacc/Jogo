@@ -10,10 +10,13 @@ public class TerminaFases : MonoBehaviour
 
      public Image img;
      public Text t;
+
+     
     void Start()
     {
         img.enabled = false;
         t.enabled = false;
+        
 
 
         fase1 = false;
